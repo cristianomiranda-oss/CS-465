@@ -1,7 +1,7 @@
 var fs = require('fs');
 var roomsData = JSON.parse(fs.readFileSync('./data/rooms.json', 'utf-8'));
 
-/* GET Homepage */
+/* GET rooms view */
 const rooms = (req, res) => {
     res.render('rooms', {title: "Travlr Getaways", roomsData})
 }
