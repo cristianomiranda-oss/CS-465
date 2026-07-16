@@ -26,7 +26,8 @@ app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, "public")));
+// Setts the index option to prevent the public index.html file from being served as the home page 
+app.use(express.static(path.join(__dirname, "public"), {index: false}));
 
 
 app.use("/", indexRouter);
