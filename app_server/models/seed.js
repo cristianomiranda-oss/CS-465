@@ -15,7 +15,7 @@ const seedDB = async () => {
 }
 
 //Closes the MongoDB connection and exits
-seedDB.then(async () => {
+seedDB().then(async () => {
     // Closes connection
     await Mongoose.connection.close();
     // Exits the process
