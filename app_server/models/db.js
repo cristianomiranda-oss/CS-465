@@ -40,6 +40,7 @@ const gracefulShutdown = (msg) => {
 };
 
 // Event Listeners to process graceful shutdowns
+
 // Shutdown invoked by nodemon signal
 process.once("SIGUSR2", () => {
   gracefulShutdown("nodemon restart");
