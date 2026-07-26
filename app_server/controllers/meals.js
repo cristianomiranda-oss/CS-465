@@ -11,7 +11,7 @@ const options = {
 
 /* GET meals view */
 const meals = async function (req, res, next) {
-  // console.log("TRAVEL CONTROLLER BEGIN")
+  // console.log("MEALS CONTROLLER BEGIN")
   await fetch(mealsEndpoint, options)
     .then((res) => res.json())
     .then((json) => {

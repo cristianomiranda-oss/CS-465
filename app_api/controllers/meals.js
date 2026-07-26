@@ -15,7 +15,7 @@ const mealsList = async (req, res) => {
     // Database returned no data
     return res.status(404).json(err);
   } else {
-    // Returns resulting trips list
+    // Returns resulting meals list
     return res.status(200).json(q);
   }
 };
@@ -33,7 +33,7 @@ const mealsFindByCode = async (req, res) => {
     // Database returned no data
     return res.status(404).json(err);
   } else {
-    // Returns resulting trips list
+    // Returns resulting meal
     return res.status(200).json(q);
   }
 };
