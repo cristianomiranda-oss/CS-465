@@ -13,6 +13,13 @@ var mealsRouter = require("./app_server/routes/meals");
 var newsRouter = require("./app_server/routes/news");
 var aboutRouter = require("./app_server/routes/about");
 var contactRouter = require("./app_server/routes/contact");
+
+// API routers
+var apiRouter = require('./app_api/routes/index');
+
+// Brings in the database
+require('./app_api/models/db');
+
 var app = express();
 
 // view engine setup
@@ -38,6 +45,7 @@ app.use("/meals", mealsRouter);
 app.use("/news", newsRouter);
 app.use("/about", aboutRouter);
 app.use("/contact", contactRouter);
+app.use('/api', apiRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
