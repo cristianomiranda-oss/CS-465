@@ -13,7 +13,7 @@ const mealsList = async (req, res) => {
 
   if (!q) {
     // Database returned no data
-    return res.status(404).json(err);
+    return res.status(500).json(err.message);
   } else {
     // Returns resulting meals list
     return res.status(200).json(q);
@@ -31,7 +31,7 @@ const mealsFindByCode = async (req, res) => {
 
   if (!q) {
     // Database returned no data
-    return res.status(404).json(err);
+    return res.status(500).json(err.message);
   } else {
     // Returns resulting meal
     return res.status(200).json(q);
