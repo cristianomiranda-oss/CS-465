@@ -7,7 +7,11 @@ const mealsController = require("../controllers/meals");
 const roomsController = require("../controllers/rooms");
 
 // Defines routes for trip endpoints
-router.route("/trips").get(tripsController.tripsList);
+router
+  .route("/trips")
+  .get(tripsController.tripsList) // Get Method returns trip list
+  .post(tripsController.tripsAddTrip); // Post Method Adds a Trip
+
 router.route("/trips/:tripCode").get(tripsController.tripsFindByCode);
 
 // Defines routes for meal endpoints
