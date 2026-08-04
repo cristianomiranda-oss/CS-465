@@ -15,10 +15,10 @@ var aboutRouter = require("./app_server/routes/about");
 var contactRouter = require("./app_server/routes/contact");
 
 // API routers
-var apiRouter = require('./app_api/routes/index');
+var apiRouter = require("./app_api/routes/index");
 
 // Brings in the database
-require('./app_api/models/db');
+require("./app_api/models/db");
 
 var app = express();
 
@@ -33,15 +33,19 @@ app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-// Setts the index option to prevent the public index.html file from being served as the home page 
-app.use(express.static(path.join(__dirname, "public"), {index: false}));
+// Setts the index option to prevent the public index.html file from being served as the home page
+app.use(express.static(path.join(__dirname, "public"), { index: false }));
 
 // Enable CORS
-app.use('/api', (req, res, next) => {
-  res.header('Access-Control-Allow-Origin', 'http://localhost:4200');
-  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+app.use("/api", (req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "http://localhost:4200");
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept",
+  );
+  res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
   next();
-})
+});
 
 app.use("/", indexRouter);
 app.use("/users", usersRouter);
@@ -51,7 +55,7 @@ app.use("/meals", mealsRouter);
 app.use("/news", newsRouter);
 app.use("/about", aboutRouter);
 app.use("/contact", contactRouter);
-app.use('/api', apiRouter);
+app.use("/api", apiRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

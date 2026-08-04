@@ -12,7 +12,10 @@ router
   .get(tripsController.tripsList) // Get Method returns trip list
   .post(tripsController.tripsAddTrip); // Post Method Adds a Trip
 
-router.route("/trips/:tripCode").get(tripsController.tripsFindByCode);
+router
+.route("/trips/:tripCode")
+.get(tripsController.tripsFindByCode) // Get Method returns a trip
+.put(tripsController.tripsUpdateTrip); // Put Method updates a trip
 
 // Defines routes for meal endpoints
 router.route("/meals").get(mealsController.mealsList);
