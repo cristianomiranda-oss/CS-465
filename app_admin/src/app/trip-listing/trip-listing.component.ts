@@ -6,6 +6,8 @@ import { TripCardComponent } from '../trip-card/trip-card.component';
 import { Trip } from '../models/trip';
 import { TripDataService } from '../services/trip-data.service';
 
+import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-trip-listing',
   standalone: true,
@@ -14,18 +16,24 @@ import { TripDataService } from '../services/trip-data.service';
   templateUrl: './trip-listing.component.html',
   styleUrl: './trip-listing.component.css',
 })
-
 export class TripListingComponent implements OnInit {
   trips: Array<any> = trips;
   message: string = '';
 
-  constructor(private tripDataService: TripDataService) {
+  constructor(
+    private tripDataService: TripDataService,
+    private router: Router,
+  ) {
     console.log('trip-listing constructor');
   }
 
   ngOnInit(): void {
     console.log('ngOnInit');
     this.getStuff();
+  }
+
+  public addTrip(): void {
+    this.router.navigate(['add-trip']);
   }
 
   private getStuff(): void {
