@@ -1,4 +1,4 @@
-<div class="card">
+<div class="card col-md-6">
   <div class="card-header">{{ trip.name }}</div>
   <img
     src="assets/images/{{ trip.image }}"
@@ -15,8 +15,9 @@
     </p>
     <p class="card-text" [innerHTML]="trip.description"></p>
     <div class="d-flex justify-content-between">
-      <button (click)="editTrip(trip)" class="btn btn-info">Edit Trip</button>
-      <button (click)="deleteTrip(trip)" class="btn btn-info">Delete Trip</button>
+      <button (click)="removeTrip(trip)" class="btn btn-info">Delete</button>
+      <button (click)="returnHome()" class="btn btn-info">Cancel</button>
     </div>
   </div>
 </div>
+
