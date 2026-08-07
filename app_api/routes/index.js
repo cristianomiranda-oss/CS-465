@@ -13,9 +13,10 @@ router
   .post(tripsController.tripsAddTrip); // Post Method Adds a Trip
 
 router
-.route("/trips/:tripCode")
-.get(tripsController.tripsFindByCode) // Get Method returns a trip
-.put(tripsController.tripsUpdateTrip); // Put Method updates a trip
+  .route("/trips/:tripCode")
+  .get(tripsController.tripsFindByCode) // Get Method returns a trip
+  .put(tripsController.tripsUpdateTrip) // Put Method updates a trip
+  .delete(tripsController.tripsDeleteTrip); // Delete Method Removes a Trip
 
 // Defines routes for meal endpoints
 router.route("/meals").get(mealsController.mealsList);

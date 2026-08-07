@@ -67,13 +67,13 @@ const tripsAddTrip = async (req, res) => {
   //   console.log(q);
 };
 
-// PUT: /trips/:tripCode - Adds a new Trip
+// PUT: /trips/:tripCode - Updates a Trip
 // Regardless of outcome, response must include HTML status code
 // and JSON message to the requesting client
 const tripsUpdateTrip = async (req, res) => {
   // Uncomment for debugging
-  console.log(req.params);
-  console.log(req.body);
+  // console.log(req.params);
+  // console.log(req.body);
 
   const q = await Model.findOneAndUpdate(
     { code: req.params.tripCode },
@@ -91,7 +91,31 @@ const tripsUpdateTrip = async (req, res) => {
 
   if (!q) {
     // Database returned no data
-    return res.status(400).json(err);
+    return res.status(400).json(err.message);
+  } else {
+    // Return resulting updated trip
+    return res.status(201).json(q);
+  }
+
+  // DEBUG: shows the results of the database action
+  // console.log(q);
+};
+
+// DELETE: /trips/:tripCode - Deletes a Trip
+// Regardless of outcome, response must include HTML status code
+// and JSON message to the requesting client
+const tripsDeleteTrip = async (req, res) => {
+  // Uncomment for debugging
+  console.log(req.params);
+  console.log(req.body);
+
+  const q = await Model.deleteOne(
+    { code: req.params.tripCode }
+  ).exec();
+
+  if (!q) {
+    // Database returned no data
+    return res.status(400).json(err.message);
   } else {
     // Return resulting updated trip
     return res.status(201).json(q);
@@ -105,5 +129,6 @@ module.exports = {
   tripsList,
   tripsFindByCode,
   tripsAddTrip,
-  tripsUpdateTrip
+  tripsUpdateTrip,
+  tripsDeleteTrip
 };
