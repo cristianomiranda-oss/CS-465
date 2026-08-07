@@ -8,10 +8,9 @@ describe('RemoveTripComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [RemoveTripComponent]
-    })
-    .compileComponents();
-    
+      imports: [RemoveTripComponent],
+    }).compileComponents();
+
     fixture = TestBed.createComponent(RemoveTripComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
