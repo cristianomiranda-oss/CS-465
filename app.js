@@ -20,6 +20,9 @@ var apiRouter = require("./app_api/routes/index");
 // Brings in the database
 require("./app_api/models/db");
 
+// Imports environment variables from env file
+require('dotenv').config();
+
 var app = express();
 
 // view engine setup

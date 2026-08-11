@@ -1,16 +1,21 @@
 const express = require("express");
 const router = express.Router();
 
-// IMports the trips controller
+// Imports the various controllers
 const tripsController = require("../controllers/trips");
+const authController = require("../controllers/authentication");
 const mealsController = require("../controllers/meals");
 const roomsController = require("../controllers/rooms");
+
+// Defines routes for the register and login endpoints
+router.route("/register").post(authController.register);
+// router.route("/login").post(authController.login);
 
 // Defines routes for trip endpoints
 router
   .route("/trips")
   .get(tripsController.tripsList) // Get Method returns trip list
-  .post(tripsController.tripsAddTrip); // Post Method Adds a Trip
+  // .post(authenticateJWT, tripsController.tripsAddTrip); // Post Method Adds a Trip
 
 router
   .route("/trips/:tripCode")
