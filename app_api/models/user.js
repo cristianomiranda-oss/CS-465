@@ -24,7 +24,7 @@ userSchema.methods.setPassword = function (password) {
 };
 
 // Method to compare entered password against stored hash
-userSchema.methods.validPassword = function (password) {
+userSchema.methods.validatePassword = function (password) {
   // Hashes the passed in password and compares it to the value stored for the entry
   var hash = crypto
     .pbkdf2Sync(password, this.salt, 1000, 64, "sha512")

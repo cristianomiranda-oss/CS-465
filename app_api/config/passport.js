@@ -7,9 +7,9 @@ const User = mongoose.model("users");
 passport.use(
   new LocalStrategy(
     {
-      userNameField: "email",
+      usernameField: "email",
     },
-    async (userName, password, done) => {
+    async (username, password, done) => {
       const q = await User.findOne({ email: username }).exec();
       if (!q) {
         return done(null, false, {

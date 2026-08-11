@@ -13,7 +13,7 @@ const tripsList = async (req, res) => {
 
   if (!q) {
     // Database returned no data
-    return res.status(500).json(err.message);
+    return res.status(500).json({"errorMessage": "Data not found"});
   } else {
     // Returns resulting trips list
     return res.status(200).json(q);
@@ -31,7 +31,7 @@ const tripsFindByCode = async (req, res) => {
 
   if (!q) {
     // Database returned no data
-    return res.status(500).json(err.message);
+    return res.status(500).json({"errorMessage": "Data not found"});
   } else {
     // Returns resulting trips list
     return res.status(200).json(q);
@@ -55,16 +55,17 @@ const tripsAddTrip = async (req, res) => {
   // Filters for a specific trip based on its code
   const q = await newTrip.save();
 
+  
+  // DEBUG: shows the results of the query
+  //   console.log(q);
+
   if (!q) {
     // Database returned no data
-    return res.status(500).json(err.message);
+    return res.status(500).json({"errorMessage": "Data not found"});
   } else {
     // Returns resulting new trip data
     return res.status(200).json(q);
   }
-
-  // DEBUG: shows the results of the query
-  //   console.log(q);
 };
 
 // PUT: /trips/:tripCode - Updates a Trip
@@ -89,16 +90,16 @@ const tripsUpdateTrip = async (req, res) => {
     },
   ).exec();
 
+  // DEBUG: shows the results of the database action
+  // console.log(q);
+
   if (!q) {
     // Database returned no data
-    return res.status(400).json(err.message);
+    return res.status(500).json({"errorMessage": "Data not found"});
   } else {
     // Return resulting updated trip
     return res.status(201).json(q);
   }
-
-  // DEBUG: shows the results of the database action
-  // console.log(q);
 };
 
 // DELETE: /trips/:tripCode - Deletes a Trip
@@ -113,16 +114,16 @@ const tripsDeleteTrip = async (req, res) => {
     { code: req.params.tripCode }
   ).exec();
 
+  // DEBUG: shows the results of the database action
+  // console.log(q);
+
   if (!q) {
     // Database returned no data
-    return res.status(400).json(err.message);
+    return res.status(500).json({"errorMessage": "Data not found"});
   } else {
     // Return resulting updated trip
     return res.status(201).json(q);
   }
-
-  // DEBUG: shows the results of the database action
-  // console.log(q);
 };
 
 module.exports = {
