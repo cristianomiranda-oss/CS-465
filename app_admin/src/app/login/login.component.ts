@@ -20,6 +20,7 @@ export class LoginComponent {
     email: '',
     password: '',
   };
+  isRegistering: boolean = false;
 
   constructor(
     private router: Router,
@@ -27,8 +28,39 @@ export class LoginComponent {
   ) {}
 
   ngOnInit(): void {}
+  
+  public toggleRegistering() {
+    // Swaps the current boolean value 
+    this.isRegistering = !this.isRegistering;
+  }
+
+  public checkIfRegistering() {
+    return this.isRegistering;
+  }
+
+  public handleSubmit(): void {
+    // Checks if the user is attempting to register a new account or login 
+    if (this.isRegistering) {
+      this.onRegisterSubmit();
+    } else {
+      this.onLoginSubmit();
+    }
+  }
 
   public onLoginSubmit(): void {
+    this.formError = '';
+    if (
+      !this.credentials.email ||
+      !this.credentials.password
+    ) {
+      this.formError = 'All fields are required, please try again';
+      this.router.navigateByUrl('#'); // Return to login page
+    } else {
+      this.doLogin();
+    }
+  }
+
+  public onRegisterSubmit(): void {
     this.formError = '';
     if (
       !this.credentials.email ||
@@ -38,7 +70,7 @@ export class LoginComponent {
       this.formError = 'All fields are required, please try again';
       this.router.navigateByUrl('#'); // Return to login page
     } else {
-      this.doLogin();
+      this.doRegister();
     }
   }
 
@@ -50,6 +82,27 @@ export class LoginComponent {
     // console.log('LoginComponent::doLogin');
     // console.log(this.credentials);
     this.authenticationService.login(newUser, this.credentials.password);
+    if (this.authenticationService.isLoggedIn()) {
+      // console.log('Router::Direct');
+      this.router.navigate(['']);
+    } else {
+      var timer = setTimeout(() => {
+        if (this.authenticationService.isLoggedIn()) {
+          // console.log('Router::Pause');
+          this.router.navigate(['']);
+        }
+      }, 3000);
+    }
+  }
+
+  private doRegister(): void {
+    let newUser = {
+      name: this.credentials.name,
+      email: this.credentials.email,
+    } as User;
+    // console.log('LoginComponent::doRegister');
+    // console.log(this.credentials);
+    this.authenticationService.register(newUser, this.credentials.password);
     if (this.authenticationService.isLoggedIn()) {
       // console.log('Router::Direct');
       this.router.navigate(['']);

@@ -83,7 +83,7 @@ export class AuthenticationService {
       },
     });
   }
-  
+
   // Register method that leverages the register method in
   // tripDataService
   // Because that method returns an observable, we subscribe to the
@@ -97,7 +97,8 @@ export class AuthenticationService {
       next: (value: any) => {
         if (value) {
           console.log(value);
-          this.authResp = value;
+          // Stores the returned token in an object matching the login returned value
+          this.authResp = { token: value };
           this.saveToken(this.authResp.token);
         }
       },

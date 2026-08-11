@@ -1,11 +1,11 @@
 <div class="row">
   <div class="col-12 col-md-8">
     <h2>Login</h2>
-    <form (ngSubmit)="onLoginSubmit()">
+    <form (ngSubmit)="handleSubmit()">
       <div role="alert" *ngIf="formError" class="alert alert-danger">
         {{ formError }}
       </div>
-      <div class="form-group">
+      <div *ngIf="checkIfRegistering()" class="form-group">
         <label for="name">Name</label>
         <input
           type="text"
@@ -35,7 +35,10 @@
         />
       </div>
       <button type="submit" role="button" class="btn btn-primary">
-        Sign In!
+        {{ this.isRegistering ? "Register" : "Sign-In" }}
+      </button>
+      <button (click)="toggleRegistering()" type="button" role="button" class="btn btn-primary">
+        {{ this.isRegistering ? "Cancel" : "Register New Account" }}
       </button>
     </form>
   </div>
