@@ -37,7 +37,12 @@
       <button type="submit" role="button" class="btn btn-primary">
         {{ this.isRegistering ? "Register" : "Sign-In" }}
       </button>
-      <button (click)="toggleRegistering()" type="button" role="button" class="btn btn-primary">
+      <button
+        (click)="toggleRegistering()"
+        type="button"
+        role="button"
+        class="btn btn-primary"
+      >
         {{ this.isRegistering ? "Cancel" : "Register New Account" }}
       </button>
     </form>

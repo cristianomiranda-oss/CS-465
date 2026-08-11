@@ -28,9 +28,9 @@ export class LoginComponent {
   ) {}
 
   ngOnInit(): void {}
-  
+
   public toggleRegistering() {
-    // Swaps the current boolean value 
+    // Swaps the current boolean value
     this.isRegistering = !this.isRegistering;
   }
 
@@ -39,7 +39,7 @@ export class LoginComponent {
   }
 
   public handleSubmit(): void {
-    // Checks if the user is attempting to register a new account or login 
+    // Checks if the user is attempting to register a new account or login
     if (this.isRegistering) {
       this.onRegisterSubmit();
     } else {
@@ -49,10 +49,7 @@ export class LoginComponent {
 
   public onLoginSubmit(): void {
     this.formError = '';
-    if (
-      !this.credentials.email ||
-      !this.credentials.password
-    ) {
+    if (!this.credentials.email || !this.credentials.password) {
       this.formError = 'All fields are required, please try again';
       this.router.navigateByUrl('#'); // Return to login page
     } else {
