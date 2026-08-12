@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-12 col-md-8">
-    <h2>Login</h2>
+    <h2>{{ this.isRegistering ? "Register" : "Login" }}</h2>
     <form (ngSubmit)="handleSubmit()">
       <div role="alert" *ngIf="formError" class="alert alert-danger">
         {{ formError }}
